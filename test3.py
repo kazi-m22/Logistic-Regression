@@ -21,4 +21,6 @@ filename = 'temp.csv'
 dataset = read_csv(filename)
 
 array = dataset.values
-print(array.shape)
+x = array[:136,0:1]
+y = array[:,1]
+print(y)
