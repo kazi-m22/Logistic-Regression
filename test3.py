@@ -22,6 +22,6 @@ dataset = read_csv(filename)
 
 array = dataset.values
 x = array[:, 0:2]
-y = array[:2]
+y = array[:,2]
 
 print(y)
