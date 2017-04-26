@@ -13,6 +13,10 @@ from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 from sklearn.naive_bayes import GaussianNB
 from sklearn.svm import SVC
 from sklearn.neighbors import KNeighborsClassifier
+from sklearn import utils
+from sklearn import preprocessing
+import numpy as np
+
 filename = '2.csv'
 # names = ['Year', 'MonthOfYear',	'DayOfMonth',	'DayOfYear',	'AirTemperature(C)',	'AirTemperatureHygroClip(C)']
 
@@ -26,7 +30,9 @@ dataset = read_csv(filename)
 array = dataset.values
 x = array[1:2232,0:4]
 y = array[1:2232,5]
-
+prediction = np.array([2010, 8, 9, 221])
+lab_enc = preprocessing.LabelEncoder()
+# encoded = lab_enc.fit_transform(y)
 validation_size = 20
 seed = 7
 
@@ -34,10 +40,13 @@ xtrain, xvalidation, ytrain, yvalidation = train_test_split(x, y, test_size=vali
 
 p = LogisticRegression()
 p.fit(xtrain, ytrain)
-# kfold = KFold(n_splits=10, random_state=seed)
-# cv_result = cross_val_score( p,xtrain, ytrain, cv=kfold, scoring='accuracy')
-#
-# print( cv_result.mean(),cv_result.std() )
+kfold = KFold(n_splits=10, random_state=seed)
+cv_result = cross_val_score( p,xtrain, ytrain, cv=kfold, scoring='accuracy')
+
+print( cv_result.mean(),cv_result.std() )
+print(p.predict(prediction))
+
+
 
 
 
