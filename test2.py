@@ -44,6 +44,7 @@ kfold = KFold(n_splits=10, random_state=seed)
 cv_result = cross_val_score( p,xtrain, ytrain, cv=kfold, scoring='accuracy')
 
 print( cv_result.mean(),cv_result.std() )
+
 print(p.predict(prediction))
 
 
