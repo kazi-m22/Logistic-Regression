@@ -22,5 +22,20 @@ dataset = read_csv(filename)
 
 array = dataset.values
 x = array[:136,0:1]
-y = array[:,1]
-print(y)
+y = array[:,2]
+
+prediction = np.array([2017])
+lab_enc = preprocessing.LabelEncoder()
+#
+validation_size = 20
+#
+seed = 7
+xtrain, xvalidation, ytrain, yvalidation = train_test_split(x, y, test_size=validation_size, random_state=seed)
+  #
+p = LogisticRegression()
+p.fit(xtrain, ytrain)
+# kfold = KFold(n_splits=10, random_state=seed)
+# cv_result = cross_val_score( p,xtrain, ytrain, cv=kfold, scoring='accuracy')
+#
+#
+# print(p.predict(prediction))

@@ -1,8 +1,8 @@
+from sklearn.model_selection import train_test_split
+from sklearn.model_selection import KFold
 from pandas import read_csv
 from pandas.tools.plotting import  scatter_matrix
 from matplotlib import pyplot
-from sklearn.model_selection import train_test_split
-from sklearn.model_selection import KFold
 from sklearn.model_selection import cross_val_score
 from sklearn.metrics import classification_report
 from sklearn.metrics import  confusion_matrix
@@ -17,7 +17,7 @@ from sklearn import utils
 from sklearn import preprocessing
 import numpy as np
 
-filename = '2.csv'
+filename = 'iris.data.csv'
 # names = ['Year', 'MonthOfYear',	'DayOfMonth',	'DayOfYear',	'AirTemperature(C)',	'AirTemperatureHygroClip(C)']
 
 dataset = read_csv(filename)
@@ -28,9 +28,12 @@ dataset = read_csv(filename)
 #validation test
 
 array = dataset.values
-x = array[1:2232,0:4]
-y = array[1:2232,5]
-prediction = np.array([2010, 8, 9, 221])
+
+x = array[:,0:4]
+y = array[:,4]
+
+
+prediction = np.array([5.1, 3, .5, .09])
 lab_enc = preprocessing.LabelEncoder()
 # encoded = lab_enc.fit_transform(y)
 validation_size = 20
@@ -43,7 +46,7 @@ p.fit(xtrain, ytrain)
 kfold = KFold(n_splits=10, random_state=seed)
 cv_result = cross_val_score( p,xtrain, ytrain, cv=kfold, scoring='accuracy')
 
-print( cv_result.mean(),cv_result.std() )
+# print( cv_result.mean(),cv_result.std() )
 
 print(p.predict(prediction))
 
