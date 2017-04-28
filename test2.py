@@ -33,7 +33,7 @@ x = array[:,0:4]
 y = array[:,4]
 
 
-prediction = np.array([5.1, 3, .5, .09])
+prediction = np.array([1, .3, .5, .09])
 lab_enc = preprocessing.LabelEncoder()
 # encoded = lab_enc.fit_transform(y)
 validation_size = 20
